@@ -1,0 +1,93 @@
+#pragma kernel SimulateNeighbors
+
+// 1. Match the C# struct EXACTLY
+struct ParticleData
+{
+    float3 position;
+    float3 velocity;
+    float life;
+};
+
+// 2. Define the buffer as Read/Write 
+RWStructuredBuffer<ParticleData> _ParticleBuffer;
+
+// 3. Define uniforms set from C#
+float _DeltaTime;
+int _ParticleCount;
+
+// 4. Parameters for Boids/Flocking logic [30, 31]
+float _NeighborRadius;
+float _SeparationWeight;
+float _AlignmentWeight;
+float _CohesionWeight;
+float _MaxSpeed;
+
+[numthreads(256,1,1)]
+void SimulateNeighbors (uint3 id : SV_DispatchThreadID)
+{
+    uint particleId = id.x;
+    if (particleId >= _ParticleCount) return;
+
+    // Read the current particle's data
+    ParticleData currentParticle = _ParticleBuffer[particleId];
+    
+    float3 separation = float3(0,0,0);
+    float3 alignment = float3(0,0,0);
+    float3 cohesion = float3(0,0,0);
+    uint neighborCount = 0;
+
+    // --- WARNING: Naive O(n²) Brute-Force Check ---
+    // This loop is for demonstration. To scale to millions of
+    // particles, this MUST be replaced with a spatial hash query
+    // that loops only over neighboring grid cells.
+    for (uint i = 0; i < _ParticleCount; i++)
+    {
+        if (i == particleId) continue;
+
+        ParticleData other = _ParticleBuffer[i];
+        float dist = distance(currentParticle.position, other.position);
+
+        // Check if the other particle is a neighbor
+        if (dist > 0 && dist < _NeighborRadius)
+        {
+            // 1. Separation: Steer away from neighbors [30]
+            separation += (currentParticle.position - other.position) / (dist * dist);
+            
+            // 2. Alignment: Steer towards average neighbor velocity [30]
+            alignment += other.velocity;
+            
+            // 3. Cohesion: Steer towards average neighbor position [30]
+            cohesion += other.position;
+            
+            neighborCount++;
+        }
+    }
+
+    float3 force = float3(0,0,0);
+    if (neighborCount > 0)
+    {
+        // Average the alignment and cohesion vectors
+        alignment /= neighborCount;
+        cohesion = (cohesion / neighborCount) - currentParticle.position;
+
+        // Apply weights
+        force += separation * _SeparationWeight;
+        force += alignment * _AlignmentWeight;
+        force += cohesion * _CohesionWeight;
+    }
+
+    // --- Update and Write Back ---
+    currentParticle.velocity += force * _DeltaTime;
+    
+    // Clamp speed
+    currentParticle.velocity = normalize(currentParticle.velocity) * min(length(currentParticle.velocity), _MaxSpeed);
+    
+    currentParticle.position += currentParticle.velocity * _DeltaTime;
+    //currentParticle.life -= _DeltaTime; // Example of other simulation
+
+    // Write the new data back into the global buffer
+    if (currentParticle.life > 0)
+    {
+        _ParticleBuffer[particleId] = currentParticle;
+    }
+}

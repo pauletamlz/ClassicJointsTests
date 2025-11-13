@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60258cbc8b389ee458f09f30ba886e4d, type: 3}
+  m_Name: HeadProfile1
+  m_EditorClassIdentifier: Assembly-CSharp::Profile
+  xMotionLock: 0
+  yMotionLock: 0
+  zMotionLock: 0
+  xRotationLock: 0
+  yRotationLock: 0
+  zRotationLock: 0
+  useLinearSprings: 0
+  linearStiffness: 5000
+  linearDamper: 100
+  useLinearLimits: 0
+  linearLimit: 2
+  linearBounce: 0
+  linearContactDistance: 0
+  useDrive: 0
+  driverStiffness: 0
+  driverDamping: 0
+  targetPosition: {x: 0, y: 0, z: 0}
+  targetVelocity: {x: 0, y: 0, z: 0}
+  mass: 1
+  linearDamping: 0.1
+  angularDamping: 0.1
+  amplitude: 1.5
+  frequency: 2
+  headMotionType: 0
+  useLimitRelatedToIndex: 0
+  increaseLimitFactor: 0
+  toBreak: 0
+  breakForce: 0
+  trail: 0

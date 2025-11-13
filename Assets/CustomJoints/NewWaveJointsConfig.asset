@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 933ee9042ec6c5748b24f5762d2224d3, type: 3}
+  m_Name: NewWaveJointsConfig
+  m_EditorClassIdentifier: Assembly-CSharp::WaveParticlesConfig
+  prefab: {fileID: 2425945362542681475, guid: 43cdf60eab74182428d5675959ca8bfe, type: 3}
+  animationClip: {fileID: 7400000, guid: 191ff284bf6266244a3d7a71bd0a76db, type: 2}
+  animController: {fileID: 9100000, guid: a50d71660c543ba4dacf0f39577ee98b, type: 2}
+  curveX:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: -0.021014439
+      outSlope: -0.021014439
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.33333334
+      outWeight: 0.5306484
+    - serializedVersion: 3
+      time: 0.5
+      value: -1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0.067510545
+      outSlope: 0.067510545
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.6103636
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  curveY:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: -0.1638934
+      outSlope: -0.1638934
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.33333334
+      outWeight: 0.31060982
+    - serializedVersion: 3
+      time: 0.29318702
+      value: -0.34329224
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 2
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9159194
+      value: 0.4533623
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 3
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.5021057
+      value: 0
+      inSlope: -0.38280442
+      outSlope: -0.38280442
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.58690983
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  numOfParticles: 50
+  timeInterval: 0.01
+  displaceInterval: 2
+  animScaleMultiplier: 5
